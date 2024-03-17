@@ -18,3 +18,5 @@ enter book title <br>
 set interactive <br>
 
     interactive = True #default
+### `About time`
+It will take about one or two minutes.

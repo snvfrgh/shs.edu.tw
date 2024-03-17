@@ -207,7 +207,7 @@ def time_of_process() -> None:
     sum_of_total_time = sum([process_time[1] for process_time in time_total])
     for func,cost_time in time_total:
         print(f"{func:27} |  process time:{cost_time:11.6f}s |  percent:{(cost_time/sum_of_total_time)*100:6.2f}%")
-    print("-"*71)
+    print("-"*75)
     print(f"{"total time":27} |  process time:{sum_of_total_time:11.6f}s")
 
 # main code

@@ -8,7 +8,9 @@ https://www.shs.edu.tw/Customer/Winning/OverIndex
 This python3 spyder can capture reading experience in shs.edu.tw.
 <br><br>
 ### `Needed modules`
-    pip install beautifulsoup4
+```py
+pip install beautifulsoup4
+```
 <br>
 
 ### `Usage`

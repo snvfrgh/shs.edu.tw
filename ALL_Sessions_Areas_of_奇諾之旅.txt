@@ -1,0 +1,21 @@
+This is ALL the SESSIONS and AREAS of 奇諾之旅
+
+
+Session:1120310 ; Area:桃園
+Session:1111010 ; Area:臺中
+Session:1110310 ; Area:臺北
+Session:1110310 ; Area:臺中
+Session:1091010 ; Area:新北
+Session:1091010 ; Area:臺中
+Session:1090315 ; Area:高二
+Session:1090315 ; Area:宜蘭
+Session:1081015 ; Area:基隆
+Session:1080315 ; Area:臺中
+Session:1071031 ; Area:桃園
+Session:1070315 ; Area:臺中
+Session:1061031 ; Area:彰化
+Session:1060315 ; Area:高二
+Session:1060315 ; Area:臺中
+Session:1041031 ; Area:彰化
+Session:1031031 ; Area:高二
+Session:1020315 ; Area:高雄

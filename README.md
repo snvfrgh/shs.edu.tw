@@ -9,6 +9,7 @@ This python3 spyder can capture reading experience in shs.edu.tw.
 <br><br>
 ### `Needed modules`
     pip install beautifulsoup4
+<br>
 
 ### `Usage`
 
@@ -18,5 +19,6 @@ enter book title <br>
 set interactive <br>
 
     interactive = True #default
+<br>
 ### `About time`
 It will take about one or two minutes.

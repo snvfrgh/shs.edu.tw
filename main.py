@@ -1,8 +1,9 @@
 import re, json
 from time import time
 from typing import List, Tuple, Dict
-from urllib import request as lib_req, error
-from urllib import parse
+from glob import glob
+from os import path, makedirs
+from urllib import request as lib_req, error, parse
 from bs4 import BeautifulSoup
 
 def get_response(url:str, request) -> str:
@@ -27,14 +28,14 @@ def write_session_and_area_in_file(bookname:str, datas:List) -> None:
         now = 0
         length = len(datas)
         width = 30
-    with open(file=f"ALL_Sessions_Areas_of_{bookname}.txt", mode="a", encoding="utf-8") as file:
+    with open(file= path.join(path.dirname(__file__),f"{folder_name}", f"ALL_Sessions_Areas_of_{bookname}.txt"), mode="a", encoding="utf-8") as file:
         file.write(f"This is ALL the SESSIONS and AREAS of {bookname}")
         file.write("\n\n\n")
         for id,session,area in datas:
             file.write(f"Session:{session} ; Area:{area}\n")
             if interactive:
                 process = int(now/length*width)
-                bar = f"Writing Session and Area [{ '#' * process}{ "-" * (width-process)}]"
+                bar = f"Writing Session and Area [{ '#' * process}{ '-' * (width-process)}]"
                 now+=1
                 print(bar,end="\r")
     if interactive:
@@ -45,7 +46,7 @@ def write_content_in_file(session:str, area:str, keys:List, values:List) -> None
     '''
     pass
     '''
-    with open(file=f"みんなの{bookname}", mode="a", encoding="utf-8") as file:
+    with open(file= path.join(path.dirname(__file__),f"{folder_name}", f"みんなの{bookname}.txt"), mode="a", encoding="utf-8") as file:
         file.write(f"------- Session:{session} | Area:{area} -------\n")
         for key,value in zip(keys,values):
             file.write(f"{key}\n")
@@ -208,7 +209,31 @@ def time_of_process() -> None:
     for func,cost_time in time_total:
         print(f"{func:27} |  process time:{cost_time:11.6f}s |  percent:{(cost_time/sum_of_total_time)*100:6.2f}%")
     print("-"*75)
-    print(f"{"total time":27} |  process time:{sum_of_total_time:11.6f}s")
+    print(f"{'total time':27} |  process time:{sum_of_total_time:11.6f}s")
+
+def make_a_folder(bookname:str) -> str:
+    folders = glob(f"{bookname}*")
+    # first search
+    if folders == []:
+        folder_name = f"{bookname}"
+        makedirs(folder_name)
+        return folder_name
+    
+    # second search
+    pattern = re.compile(rf'({bookname})\((\d+)\)')
+    numbers = [0]
+    for folder in folders:
+        match = re.match(pattern= pattern, string= folder)
+        if match:
+            number = int(match.group(2))
+            numbers.append(number)
+    
+    # make (number)
+    max_number = max(numbers)
+    folder_name = f"{bookname}({max_number+1})" 
+    makedirs(folder_name)
+    return folder_name
+
 
 # main code
 if __name__=="__main__":
@@ -247,6 +272,8 @@ if __name__=="__main__":
         ## ----- prepare -----
         # enter your book name ;;; default is "86―エイティシックス―"
         bookname = input("Give book title! -> ") or "86"
+        # make a folder
+        folder_name = make_a_folder(bookname)
         # encode to URL
         booktitle = parse.quote(bookname)
         # get "the index of the website" (Sessions, Area)
@@ -276,7 +303,7 @@ if __name__=="__main__":
             get_content(id=each[0], contest_session=each[1], area=each[2])
             if interactive:
                     process = int(now/length*width)
-                    bar = f"Writing Content          [{ '#' * process}{ "-" * (width-process)}]"
+                    bar = f"Writing Content          [{ '#' * process}{ '-' * (width-process)}]"
                     now+=1
                     print(bar,end="\r")
         if interactive:
@@ -294,6 +321,8 @@ if __name__=="__main__":
     except PermissionError as p:
         not_end_of_process(p)
     except KeyboardInterrupt as k:
-        not_end_of_process("STOP")
+        SyntaxError:("STOP")
+    except SyntaxError as s:
+        not_end_of_process(s)
     except:
         not_end_of_process("Nothing")

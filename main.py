@@ -216,7 +216,7 @@ def make_a_folder(bookname:str) -> str:
     # first search
     if folders == []:
         folder_name = f"{bookname}"
-        makedirs(folder_name)
+        makedirs(path.join(path.dirname(__file__),folder_name))
         return folder_name
     
     # second search
@@ -231,7 +231,7 @@ def make_a_folder(bookname:str) -> str:
     # make (number)
     max_number = max(numbers)
     folder_name = f"{bookname}({max_number+1})" 
-    makedirs(folder_name)
+    makedirs(path.join(path.dirname(__file__),folder_name))
     return folder_name
 
 
@@ -321,8 +321,10 @@ if __name__=="__main__":
     except PermissionError as p:
         not_end_of_process(p)
     except KeyboardInterrupt as k:
-        SyntaxError:("STOP")
+        not_end_of_process(k)
     except SyntaxError as s:
         not_end_of_process(s)
+    except ImportError as i:
+        not_end_of_process(i)
     except:
         not_end_of_process("Nothing")

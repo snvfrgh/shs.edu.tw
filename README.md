@@ -13,7 +13,7 @@ This python3 spyder can capture reading experience in shs.edu.tw.
 
 ### `Needed modules`
 ```py
-pip install beautifulsoup4
+pip install bs4
 ```
 <br>
 

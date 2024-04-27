@@ -28,7 +28,7 @@ set interactive <br>
 <br>
 
 ### `About time`
-It will take about one or two minutes.
+It will take about one to two minutes.
 <br><br><br>
 <br>
 
